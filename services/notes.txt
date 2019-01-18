@@ -1,0 +1,10 @@
+consul agent -dev
+micro api
+protoc --go_out=plugins=micro:. hello.proto
+cd services
+go build
+./services
+curl -X POST -H 'Content-Type: application/json' -d '{"service": "go.micro.service.greeter", "method": "Say.Hello", "request": {"name": "Arpit Aggarwal"}}' http://localhost:8080/rpc
+
+
+
