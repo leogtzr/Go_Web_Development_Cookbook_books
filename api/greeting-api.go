@@ -12,7 +12,7 @@ import (
 )
 
 type Say struct {
-	Client hello.Client
+	Client hello.
 }
 
 func (s *Say) Hello(ctx context.Context, rq *api.Request, rsp *api.Response) error {

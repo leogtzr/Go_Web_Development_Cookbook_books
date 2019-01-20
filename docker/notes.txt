@@ -1,0 +1,34 @@
+How to build, run and check the logs.
+
+0 [17:52][leo@docker]$ sudo docker build --no-cache=true -t golang-image .
+Sending build context to Docker daemon  4.608kB
+Step 1/6 : FROM golang:1.9.2
+ ---> 138bd936fa29
+Step 2/6 : RUN mkdir /app
+ ---> Running in a93d57192cb9
+Removing intermediate container a93d57192cb9
+ ---> f7966f54622d
+Step 3/6 : ADD . /app/
+ ---> 68b7921f9563
+Step 4/6 : WORKDIR /app
+ ---> Running in bd5c2e1ceaa0
+Removing intermediate container bd5c2e1ceaa0
+ ---> 0cd8b8798804
+Step 5/6 : RUN go build -o main .
+ ---> Running in f99835cba43e
+Removing intermediate container f99835cba43e
+ ---> 72a6de5d3d05
+Step 6/6 : CMD ["/app/main"]
+ ---> Running in 01543a074eab
+Removing intermediate container 01543a074eab
+ ---> caa32b5c550a
+Successfully built caa32b5c550a
+Successfully tagged golang-image:latest
+[0 [17:52][leo@docker]$ sudo docker run -d -p 8080:8080 --name golang-container -it golang-image
+bbf7421310668a9f580bcace87d8896b5b8a944a14dd64180766899eed3ca4fb
+[0 [17:52][leo@docker]$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND               CREATED             STATUS                    PORTS                    NAMES
+bbf742131066        golang-image        "/app/main"           6 seconds ago       Up 5 seconds              0.0.0.0:8080->8080/tcp   golang-container
+6e8c017dc34a        spring-boot:1.0     "java -jar app.jar"   4 days ago          Exited (143) 3 days ago                            hello-app
+[0 [17:52][leo@docker]$ sudod ocke^C
+[130 [17:52][leo@docker]$ sudo docker container logs -f bbf742131066

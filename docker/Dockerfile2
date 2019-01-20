@@ -1,0 +1,18 @@
+FROM golang:1.9.2
+ENV SRC_DIR=/go/src/github.com/leogtzr/
+ENV GOBIN=/go/bin
+
+WORKDIR $GOBIN
+
+# Add the source code
+ADD . $SRC_DIR
+
+RUN cd /go/src
+
+# RUN go build -o $SRC_DIR/hola $SRC_DIR/http-server.go
+RUN go install github.com/leogtzr
+RUN pwd
+RUN ls
+ENTRYPOINT ["./leogtzr"]
+
+EXPOSE 8080
