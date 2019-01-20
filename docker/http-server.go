@@ -7,7 +7,9 @@ import (
 )
 
 const (
+	// ConnHost ...
 	ConnHost = "0.0.0.0"
+	// ConnPort ...
 	ConnPort = "8080"
 )
 

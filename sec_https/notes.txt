@@ -1,0 +1,5 @@
+# Run the following commands to generate all the 3 files:
+openssl req -newkey rsa:2048 -nodes -keyout domain.key -out domain.csr -subj "/C=IN/ST=Mumbai/L=Leo East/O=Packt/CN=leogtzr.com"
+openssl req -key domain.key -new -x509 -days 365 -out domain.crt -subj "/C=IN/ST=Mumbai/L=Leo East/O=Packt/CN=leogtzr.com"
+
+
